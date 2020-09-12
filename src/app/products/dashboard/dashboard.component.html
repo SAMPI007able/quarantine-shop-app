@@ -1,0 +1,10 @@
+<div class="container">
+    <h1 class="display-4">Choose your favourite dessert </h1>
+    <div class="row">
+        <ng-template ngFor let-product [ngForOf]="products$ | async">
+            <div class="col-sm-4">
+                <app-card [productInfo]="product"></app-card>
+            </div>
+        </ng-template>
+    </div>
+</div>

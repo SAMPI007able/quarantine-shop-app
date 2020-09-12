@@ -1,0 +1,11 @@
+<div class="card" style="width: 18rem;">
+    <img [src]="assetPath + productInfo.imagePath" class="card-img-top" [alt]="productInfo.title">
+    <div class="card-body">
+        <h5 class="card-title">{{productInfo.title}}</h5>
+        <p class="card-text">{{(productInfo.description.length>100)? (productInfo.description | slice:0:100)+'..':(productInfo.description)}} </p>
+        <div class="price pull-left font-italic font-weight-bold">{{productInfo.price | currency:'INR'}}</div>
+    </div>
+    <div class="card-body">
+    <a class="btn btn-success pull-right font-weight-bold" role="button">Add to cart</a>
+    </div>
+</div>
