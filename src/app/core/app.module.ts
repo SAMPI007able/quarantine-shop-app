@@ -1,12 +1,10 @@
-import { AuthGuardService } from './../idm/service/auth-guard.service';
-import { AppConfigService } from './app-config.service';
-import { IdmModule } from './../idm/idm.module';
+import { environment } from './../../environments/environment.prod';
+import { CustomHTTPInterceptor } from './interceptors/custom-http.interceptor';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,10 +13,12 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    IdmModule,
     HttpClientModule
   ],
-  providers: [AppConfigService, AuthGuardService],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: CustomHTTPInterceptor, multi: true },
+    { provide: `baseUrl`, useValue: environment.baseUrl }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

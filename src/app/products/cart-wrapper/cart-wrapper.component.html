@@ -1,0 +1,64 @@
+<div class="container-fluid cart-bg">
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive"  style="margin-top: 55px;">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"> </th>
+                            <th class="font-white" scope="col">Product</th>
+                            <th scope="col" class="text-center font-white">Quantity</th>
+                            <th scope="col" class="text-right font-white">Price</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-template ngFor let-item [ngForOf]="cartItems">
+                            <tr>
+                                <td><img class="img-responsive" style="height: 50px; width: 50px;" [src]="assetPath + item.imagePath" /> </td>
+                                <td class="font-white">{{item.title}}</td>
+                                <td><input class="form-control" [value]="item.qty" type="number" (change)="valueChanged(item, $event)" /></td>
+                                <td class="text-right font-white">{{item.price | currency:'INR'}}</td>
+                                <td class="text-right font-white"><button (click)="cart.remove(item._id, true)" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                            </tr>
+                        </ng-template>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="font-white">Sub-Total</td>
+                            <td class="text-right font-white">{{cart.getTotalItemByProp('price') | currency:'INR'}}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="font-white">Shipping</td>
+                            <td class="text-right font-white">{{shippingCost | currency:'INR'}}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong class="font-white">Total</strong></td>
+                            <td class="text-right font-white"><strong>{{cart.getTotalItemByProp('price') | currency:'INR'}}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col mb-2">
+            <div class="row">
+                <div class="col-sm-12  col-md-6">
+                    <button class="btn btn-block btn-light" [routerLink]="['/prod/list']">Continue Shopping</button>
+                </div>
+                <div class="col-sm-12 col-md-6 text-right">
+                    <button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

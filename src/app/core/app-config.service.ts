@@ -1,21 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppConfigService {
-  baseUrl = '';
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
-  constructor( public router: Router, public http: HttpClient ) {
-    this.http.get('assets/config/env.json')
-      .subscribe((envData: any) => {
-        this.baseUrl = envData.baseUrl;
-      });
-  }
+  constructor( public router: Router, public http: HttpClient ) {}
 
   doNavigate(url: string, params?: any): void{
     if( typeof url === 'string' ){
@@ -24,9 +15,9 @@ export class AppConfigService {
   }
 
   doHttpPostCall(url: string , input){
-    return this.http.post( this.baseUrl + url, input, this.httpOptions );
+    return this.http.post( url, input );
   }
   doHttpGetCall(url: string, responseType?){
-    return this.http.get(this.baseUrl + url, responseType || {});
+    return this.http.get(url, responseType || {});
   }
 }

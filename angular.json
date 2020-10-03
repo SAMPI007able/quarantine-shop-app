@@ -30,7 +30,10 @@
                 "bundleName": "defaultStyle"
               }
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/jquery-3.5.1.slim.min.js",
+              "src/assets/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {

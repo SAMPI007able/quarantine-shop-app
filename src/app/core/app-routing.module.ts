@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path : '',
-    redirectTo : 'idm',
+    redirectTo : 'prod',
     pathMatch: 'full'
   },
   {
@@ -16,8 +16,7 @@ const routes: Routes = [
   {
     path : 'prod',
     component: ProductComponent,
-    loadChildren: () => import('../products/products.module').then(m => m.ProductsModule),
-    canActivate: [AuthGuardService]
+    loadChildren: () => import('../products/products.module').then(m => m.ProductsModule)
   }
 ];
 

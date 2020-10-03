@@ -11,3 +11,26 @@ input.invalid-red{
     border-color: red;
     box-shadow: 1px 1px red;
 }
+div.prod-bg{
+    background-image: url('../../images/background/product-background.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+div.cart-bg{
+    background-image: url('../../images/background/cart-background.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    min-height: 500px;
+}
+.font-white{
+    color: #ffffff;
+    text-shadow: 2px 2px #0f0202;
+}
+.alert-success{
+    text-align: center;
+    z-index: 1;
+    position: fixed;
+    width: 100%;
+}

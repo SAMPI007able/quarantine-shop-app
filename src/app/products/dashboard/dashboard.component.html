@@ -1,10 +1,17 @@
-<div class="container">
-    <h1 class="display-4">Choose your favourite dessert </h1>
+<app-banner></app-banner>
+<div class="container-fluid prod-bg">
+    <h1 class="display-4" style="text-shadow: 2px 2px #ffffff6b;">Choose your favourite dessert </h1>
     <div class="row">
-        <ng-template ngFor let-product [ngForOf]="products$ | async">
-            <div class="col-sm-4">
-                <app-card [productInfo]="product"></app-card>
+        <div class="col">
+            <div class="container-fluid">
+                <div class="row">
+                    <ng-template ngFor let-product [ngForOf]="products$ | async">
+                        <div class="col-sm-4" style="padding-bottom: 10px;">
+                            <app-card [productInfo]="product"></app-card>
+                        </div>
+                    </ng-template>
+                </div>
             </div>
-        </ng-template>
+        </div>        
     </div>
 </div>
