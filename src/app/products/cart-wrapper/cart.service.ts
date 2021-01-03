@@ -14,7 +14,7 @@ interface ProductInfo{
 })
 export class CartService {
   public shippingCost = 0;
-  cartSub = new Subject<string>();
+  cartSub = new Subject<{type: string , msg: string, status: string}>();
   constructor() { }
 
   getTotalItemByProp(prop: string, itemID?: string): number{
@@ -53,7 +53,7 @@ export class CartService {
       cartItems[productInfo._id] = productInfo;
     }
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    this.cartSub.next('added');
+    this.cartSub.next({type: 'cart', msg : 'SuccessFully Updated the Cart', status: 'success'});
     return cartItems[productInfo._id].qty;
   }
   remove(id: string, removeAll: boolean = false): number{
@@ -64,23 +64,27 @@ export class CartService {
         if(cartItem.qty > 1){
           cartItem.qty--;
           localStorage.setItem('cartItems', JSON.stringify(cartItems));
-          this.cartSub.next('removed');
+          this.cartSub.next({type: 'cart', msg : 'Removed SuccessFully', status: 'success'});
           return cartItem.qty;
         } else{
           delete cartItems[id];
           localStorage.setItem('cartItems', JSON.stringify(cartItems));
-          this.cartSub.next('removed');
+          this.cartSub.next({type: 'cart', msg : 'Removed SuccessFully', status: 'success'});
           return 0;
         }
       }
     } else{
       delete cartItems[id];
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
-      this.cartSub.next('removed');
+      this.cartSub.next({type: 'cart', msg : 'Removed SuccessFully', status: 'success'});
       return 0;
     }
-    this.cartSub.next('removed');
+    this.cartSub.next({type: 'cart', msg : 'Removed SuccessFully', status: 'success'});
     return 0;
+  }
+
+  removeAll(){
+    localStorage.setItem('cartItems', null);
   }
 
 }

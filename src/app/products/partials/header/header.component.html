@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<ng-content></ng-content>
+<nav class="sticky-top navbar navbar-expand-lg navbar-dark bg-dark">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -18,15 +19,23 @@
           </div>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['/prod/cart']">Cart <span [hidden]="qtyAddedToCart===0" class="badge badge-light">{{qtyAddedToCart}}</span></a>
+          <a class="nav-link" [routerLink]="['/prod/cart']" onclick="window.scrollTo({
+            top: 550,
+            behavior: 'smooth'
+          })">Cart <span [hidden]="qtyAddedToCart===0" class="badge badge-light">{{qtyAddedToCart}}</span></a>
         </li>
       </ul>
-      <!-- <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      </form> -->
+      <input [formControl]="searchControl" style="width: 50%;" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+      onfocus="window.scrollTo({
+        top: 550,
+        behavior: 'smooth'
+      })">
+    </div>
+    <div class="alert position-absolute w-75" style="margin-left: 120px;" [class.d-none]="status===''" [class.alert-success]="status==='success'" [class.alert-danger]="status==='failure'" role="alert">
+     {{msg}} 
+      <i [routerLink]="['/prod/cart']" class="fa fa-shopping-cart"> {{qtyAddedToCart}}</i>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
   </nav>
-  <div *ngIf="msg!==''" class="alert alert-success" role="alert">
-   {{msg}} 
-    <i [routerLink]="['/prod/cart']" class="fa fa-shopping-cart"> {{qtyAddedToCart}}</i>
-  </div>

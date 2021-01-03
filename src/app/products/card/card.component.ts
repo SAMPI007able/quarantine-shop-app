@@ -1,7 +1,7 @@
 import { CartService } from './../cart-wrapper/cart.service';
 import { Component, OnInit, Input } from '@angular/core';
 
-interface ProductInfo{
+export interface ProductInfo{
   _id: string;
   imagePath: string;
   title: string;
