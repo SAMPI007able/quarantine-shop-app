@@ -45,7 +45,7 @@ export class CartWrapperComponent implements OnInit {
 
   get cartItems(){
     const cartItems = localStorage.getItem('cartItems');
-    return cartItems !== 'null' ? Object.values(JSON.parse(cartItems)) : [];
+    return cartItems !== 'null' && cartItems !== null ? Object.values(JSON.parse(cartItems)) : [];
   }
   set cartItems(items){
     this._cartItems = items;
