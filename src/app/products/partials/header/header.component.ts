@@ -42,6 +42,6 @@ export class HeaderComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit(){
-    console.log(this.banner);
+    // console.log(this.banner);
   }
 }

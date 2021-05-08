@@ -18,6 +18,6 @@ export class AppConfigService {
     return this.http.post( url, input );
   }
   doHttpGetCall(url: string, responseType?){
-    return this.http.get(url, responseType || {});
+    return this.http.get(url);
   }
 }

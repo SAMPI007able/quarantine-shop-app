@@ -11,20 +11,20 @@ app.use(bodyParser.json());
 app.use( cors() );
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.use(express.static(__dirname , path.join('/dist/quarantine-shop-app')));
-app.get('/*', (req, res) => res.sendFile(__dirname) );
+app.use(express.static(__dirname + '/dist/quarantine-shop-app' ));
 
 var mongoose = require('mongoose');
 const mongoURI = 'mongodb://localhost:27017/quarantine-shop-db';
 mongoose.
-    connect(mongoURI, {useUnifiedTopology: true, useNewUrlParser:true}).
-    then(() => console.log('MongoDB Connected..')).
-    catch(err => console.error(err));
+connect(mongoURI, {useUnifiedTopology: true, useNewUrlParser:true}).
+then(() => console.log('MongoDB Connected..')).
+catch(err => console.error(err));
 
 const userRoutes = require('./routes/users');
 app.use('/user', userRoutes);
 const productRoutes = require('./routes/products');
 app.use('/product', productRoutes);
+app.get('/*', (req, res) => res.sendFile(__dirname + '/dist/quarantine-shop-app/index.html' ) );
 
 const server = http.createServer(app);
 server.listen(port, () => {
